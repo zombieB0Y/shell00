@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zm <marvin@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 19:02:56 by zm                #+#    #+#             */
-/*   Updated: 2024/05/19 22:44:54 by zm               ###   ########.fr       */
+/*   Created: 2024/05/20 19:37:51 by zm                #+#    #+#             */
+/*   Updated: 2024/05/20 20:04:30 by zm               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -16,29 +16,31 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_print_comb2(void)
+void	ft_putnbr(int nb)
 {
-	int	a;
-	int	b;
-
-	a = 0;
-	while (a <= 98)
+	if (nb == -2147483648)
 	{
-		b = a + 1;
-		while (b <= 99)
-		{
-			ft_putchar(a / 10 + '0');
-			ft_putchar(a % 10 + '0');
-			ft_putchar(' ');
-			ft_putchar(b / 10 + '0');
-			ft_putchar(b % 10 + '0');
-			if (a != 98 || b != 99)
-			{
-				ft_putchar(',');
-				ft_putchar(' ');
-			}
-			b ++;
-		}
-		a ++;
+		ft_putchar('-');
+		ft_putchar('2');
+		nb = 147483648;
+	}
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		nb = nb % 10;
+	}
+	if (nb < 10)
+	{
+		ft_putchar(nb + '0');
 	}
 }
+/*int main()
+{
+	ft_putnbr(945);
+	return 0;
+}*/
